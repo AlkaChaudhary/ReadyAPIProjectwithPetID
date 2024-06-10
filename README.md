@@ -2,15 +2,14 @@
 
 # Project Title
 
-Ready API Project through which Add Pet then get PrtId and Update it and then upload the images
+Ready API Project through which Add Pet then get PrtId and Update status code value (200) in xls sheet and then upload the images.
 
 
 ## Description
 
 
 
-
 ## Report
 
-Here are some related projects
+Here are the exported report from READYAPI
 [ReadyAPIReport.pdf](https://github.com/user-attachments/files/15764521/ReadyAPIReport.pdf)
