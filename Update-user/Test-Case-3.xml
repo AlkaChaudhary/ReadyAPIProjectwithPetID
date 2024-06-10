@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase xmlns:con="http://eviware.com/soapui/config" id="9def9abe-bdd0-438b-849c-4139bc53d4a9" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="Test Case 3" searchProperties="true" timeout="0">
+  <con:settings id="656f028e-fdf6-4223-ad7a-e6c98fd64603">
+    <con:setting id="9def9abe-bdd0-438b-849c-4139bc53d4a9fileName">Test-Case-3</con:setting>
+  </con:settings>
+  <con:testStep type="restrequest" name="Upload Image" id="dfec4d07-2602-4241-879e-e6a054a51c18">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="Swagger Petstore" resourcePath="/v2/pet/{petId}/uploadImage" methodName="uploadFile" xsi:type="con:RestRequestStep">
+      <con:restRequest name="Upload Image" id="02346e44-0bbf-49e9-a658-6278d0733078" mediaType="multipart/form-data" postQueryString="true">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:endpoint>http://petstore.swagger.io</con:endpoint>
+        <con:request/>
+        <con:originalUri>http://fproxy2.dsb.dk/auth/</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="55d36469-2ff2-4ce9-b1c1-3e059a77184e" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="a181e480-0bee-44d3-bb3d-eb2d30726cab" name="Response SLA">
+          <con:configuration>
+            <SLA>1000</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="petId" value="9223372016900018329"/>
+          <con:entry key="file" value="file:${projectDir}MyPet.png"/>
+          <con:entry key="additionalMetadata" value="My pet"/>
+        </con:parameters>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:properties/>
+  <con:reportParameters/>
+</con:testCase>

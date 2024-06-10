@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testSuite xmlns:con="http://eviware.com/soapui/config" id="fd24df01-15be-4661-b730-38bf215bf652" name="Update user">
+  <con:settings id="ecfd6bb8-8dfa-493a-b766-5baea0f063e4">
+    <con:setting id="IncludeOverview">true</con:setting>
+    <con:setting id="IncludeResults">true</con:setting>
+    <con:setting id="FlowLayout">false</con:setting>
+    <con:setting id="ErrorDetails">true</con:setting>
+    <con:setting id="IncludeCoverage">true</con:setting>
+    <con:setting id="GeneratableJUnitReport@Style">Multiple Pages</con:setting>
+    <con:setting id="GeneratableJUnitReport@Folder">C:\Users\xalch1103\OneDrive - DSB\Alka working 2\Reports</con:setting>
+    <con:setting id="GeneratableJUnitReport@Modify">false</con:setting>
+    <con:setting id="fd24df01-15be-4661-b730-38bf215bf652fileName">Update-user</con:setting>
+  </con:settings>
+  <con:runType>SEQUENTIAL</con:runType>
+  <con:properties/>
+  <con:reportParameters/>
+</con:testSuite>

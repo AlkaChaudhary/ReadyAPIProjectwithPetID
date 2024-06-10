@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase xmlns:con="http://eviware.com/soapui/config" id="1ac236e7-94d3-4acb-ac9e-3f70d1995d9a" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="Test Case 2" searchProperties="true" timeout="0">
+  <con:settings id="5b0fa0e5-c673-49cf-9e12-edf1fc14baac">
+    <con:setting id="1ac236e7-94d3-4acb-ac9e-3f70d1995d9afileName">Test-Case-2</con:setting>
+  </con:settings>
+  <con:testStep type="datasource" name="Data Source" id="291c855e-323d-43ff-a296-c2cc7231248d">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:DataSourceStep">
+      <con:dataSource type="Excel">
+        <con:configuration>
+          <file>C:/Users/xalch1103/OneDrive - DSB/Alka working 2/Reports/user-names.xlsx</file>
+          <worksheet>Sheet1</worksheet>
+          <cell>A2</cell>
+          <ignoreEmpty>false</ignoreEmpty>
+          <evaluateFormulas>false</evaluateFormulas>
+        </con:configuration>
+      </con:dataSource>
+      <con:shared>true</con:shared>
+      <con:restartShared>true</con:restartShared>
+      <con:property>username</con:property>
+      <con:property>lastname</con:property>
+      <con:restartOnRun>true</con:restartOnRun>
+      <con:stopDatasourceExhausted>false</con:stopDatasourceExhausted>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="Update pet" id="534d529a-8967-4c4f-99e1-403003b0b3e7">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="Swagger Petstore" resourcePath="/v2/user/{username}" methodName="updateUser" xsi:type="con:RestRequestStep">
+      <con:restRequest name="Update pet" id="feb661d6-7eb3-4142-a0c8-1762cf5926ff" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:endpoint>http://petstore.swagger.io</con:endpoint>
+        <con:request>{\r
+   "id" : 0,\r
+   "username" : "string",\r
+   "firstName" : "string",\r
+   "lastName" : "${Data Source#lastname}",\r
+   "email" : "string",\r
+   "password" : "string",\r
+   "phone" : "string",\r
+   "userStatus" : 0\r
+}</con:request>
+        <con:originalUri>https://petstore.swagger.io/v2/user/linda.johnson</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="d3b73731-145b-4ced-9bc4-7c589cb5bdf0" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="2d7bb3bf-de3b-4127-9112-90fd7e07e0ba" name="Response SLA">
+          <con:configuration>
+            <SLA>1000</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="username" value="${Data Source#username}"/>
+        </con:parameters>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="datasink" name="Data Sink" id="93ec9501-c15b-4d04-89ee-ac7906c4a16d">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:DataSinkStep">
+      <con:dataSink type="Excel">
+        <con:configuration>
+          <file/>
+          <outfile>C:/Users/xalch1103/OneDrive - DSB/Alka working 2/Reports/data-sink.xlsx</outfile>
+          <worksheet>Sheet1</worksheet>
+          <cell>A2</cell>
+          <evaluateFormulas>false</evaluateFormulas>
+          <append>false</append>
+        </con:configuration>
+      </con:dataSink>
+      <con:properties>
+        <con:property>
+          <con:name>Status Code</con:name>
+          <con:value>${Update pet#HarResponse#$['status']}</con:value>
+        </con:property>
+      </con:properties>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="datasourceloop" name="Data Source Loop" id="03ffad9e-f08c-4b23-80b3-06571605af41">
+    <con:settings/>
+    <con:config>
+      <dataSourceStep>Data Source</dataSourceStep>
+      <targetStep>REST Request</targetStep>
+      <discardResults>true</discardResults>
+    </con:config>
+  </con:testStep>
+  <con:properties/>
+  <con:reportParameters/>
+</con:testCase>
